@@ -1,2 +1,2 @@
 # nodets
- A proper nodejs api server implementation with typescript
+ A proper nodejs api server with mongodb using mongoose, implementated with typescript
