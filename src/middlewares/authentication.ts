@@ -4,7 +4,7 @@ import errors from '../utils/errors/errors.custom';
 
 const authenticateClient = (
 	req: express.Request,
-	res: express.Response,
+	_res: express.Response,
 	next: express.NextFunction,
 ) => {
 	//Check request header

@@ -13,6 +13,10 @@ const userSchema = new mongoose.Schema({
 		validate: [validators.validateEmail, 'Please fill a valid email address'],
 	},
 	password: String,
+	isLoggedIn: {
+		type: Boolean,
+		default: true,
+	},
 });
 
 //Hash Password - Always Hash password before saving

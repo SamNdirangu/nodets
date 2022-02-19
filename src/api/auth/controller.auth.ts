@@ -21,7 +21,7 @@ const signup = async (req: Request, res: Response) => {
 };
 
 //Sign in Process with email----------------------------------------
-const sigin = async (req: Request, res: Response) => {
+const signin = async (req: Request, res: Response) => {
 	const { email, password } = req.body;
 	validators.validateEmailandPasswordExists(email, password);
 
@@ -33,6 +33,14 @@ const sigin = async (req: Request, res: Response) => {
 
 	//Send our token
 	res.status(StatusCodes.OK).json({ token: account.createJWT() });
+};
+
+//Sign in Process with email----------------------------------------
+const signOut = async (req: Request, res: Response) => {
+	const id = req.body.clientData.id;
+	await userModel.findByIdAndUpdate(id, { ...{ isLoggedIn: false } });
+	//Send our token
+	res.status(StatusCodes.OK).json({});
 };
 
 //Get account data --------------------------------------------
@@ -59,4 +67,4 @@ const getAllUsers = async (req: Request, res: Response) => {
 	res.status(200).json(users);
 };
 
-export default { account, sigin, signup, getAllUsers };
+export default { account, signin, signup, signOut, getAllUsers };

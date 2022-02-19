@@ -1,8 +1,8 @@
 // Specialized Fucntions ================================================================
 const numericalFilterBuilder = (
-	query: any,
-	numericFilters: string,
-	options: string[],
+	query: any, //the mongoose query
+	numericFilters: string, //within request param
+	options: string[], //Filterable numerical fields within the model
 ) => {
 	//Mongoose doesnt understand logic char, we replace this characters to mongoose key words
 	const operatorMap: any = {

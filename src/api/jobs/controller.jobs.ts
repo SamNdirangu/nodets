@@ -27,24 +27,23 @@ const getAllJobs = async (req: express.Request, res: express.Response) => {
 	if (status) jobsQuery = jobsQuery.where('status').equals(status);
 	//Only display the provided fields filter
 	if (fields) jobsQuery = jobsQuery.select(String(fields).split(',').join(' ')); //cant use comma replace with space
-
 	//Non Schema based ================================================
 	//Sort
 	if (sort) {
 		jobsQuery = jobsQuery.sort(String(sort).split(',').join(' ')); //cant use comma replace with space
 	} else jobsQuery = jobsQuery.sort('createdAt');
-
 	//paging
 	const page = Number(req.query.page) || 1;
 	const limit = Number(req.query.limit) || 10;
 	const skip = (page - 1) * limit;
 	jobsQuery = jobsQuery.skip(skip).limit(limit);
 	//-------------------------------------------------------------------
-
 	//Now we wait for our products
 	const jobs = await jobsQuery;
 	res.status(StatusCodes.OK).json({ page, nbHits: jobs.length, jobs });
 };
+
+//
 const getJob = async (req: express.Request, res: express.Response) => {
 	const id = req.params.id;
 	const job = await jobModel.findById(id);
@@ -53,6 +52,8 @@ const getJob = async (req: express.Request, res: express.Response) => {
 	}
 	res.status(StatusCodes.OK).json(job);
 };
+
+//
 const getUserJob = async (req: express.Request, res: express.Response) => {
 	const _id = req.params.id;
 	const createdBy = req.body.clientData.id;
@@ -75,6 +76,8 @@ const updateJob = async (req: express.Request, res: express.Response) => {
 	}
 	res.status(StatusCodes.OK).json(job);
 };
+
+//
 const deleteJob = async (req: express.Request, res: express.Response) => {
 	const id = req.params.id;
 	const job = await jobModel.findByIdAndDelete(id);

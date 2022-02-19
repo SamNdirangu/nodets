@@ -1,11 +1,12 @@
 import express from 'express';
-import authenticateClient from '../../middlewares/authentication';
 import controller from './controller.auth';
+import authenticateClient from '../../middlewares/authentication';
 
 const authRouter = express.Router();
 
-authRouter.route('/signin').post(controller.sigin);
+authRouter.route('/signin').post(controller.signin);
 authRouter.route('/signup').post(controller.signup);
+authRouter.route('/signout').get(authenticateClient, controller.signOut);
 authRouter.route('/account').get(controller.account);
 authRouter.route('/users').get(authenticateClient, controller.getAllUsers);
 

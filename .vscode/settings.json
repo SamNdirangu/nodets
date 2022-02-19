@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/7ed6ef39-9892-4d02-bc64-7406dc82e688/resourceGroups/AZ-204/providers/Microsoft.Web/sites/quickappsam",
+    "appService.deploySubpath": "."
+}
