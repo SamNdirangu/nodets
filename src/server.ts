@@ -27,7 +27,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 //Heart beat / server testing route
-app.get('/heart', heartBeat);
+app.get('/isAlive', heartBeat);
 
 app.use('/api/v1', apiV1Router); //Version 1 App APIs
 //Error handlers

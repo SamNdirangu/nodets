@@ -7,6 +7,7 @@ import authenticateClient from '../middlewares/authentication';
 
 const apiV1Router = express.Router();
 
+//Routes
 apiV1Router.use('/auth', authRouter);
 apiV1Router.use('/products', productRouter);
 apiV1Router.use('/jobs', authenticateClient, jobsRouter);
