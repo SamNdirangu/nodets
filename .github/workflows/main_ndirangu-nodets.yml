@@ -51,5 +51,5 @@ jobs:
         with:
           app-name: 'ndirangu-nodets'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_FFCCCA58A5824696967A4AFC190F015F }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_81A6D9074D04486E85340E5A5438FB43 }}
           package: .
