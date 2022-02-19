@@ -34,7 +34,7 @@ app.use('/api/v1', apiV1Router); //Version 1 App APIs
 app.use(notFoundMiddleWare);
 app.use(errorHandlerMiddleWare);
 
-const port = process.env.port || 80;
+const port = process.env.PORT || 80;
 const startApp = () => {
 	console.log('Connecting to database...');
 	connectDB(String(process.env.dbConnectionURL))
