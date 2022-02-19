@@ -1,6 +1,10 @@
 # NodeJS Express Server with Typescript and Mongoose
 
-This is a proper implementation of an express server coupled with mongoose and JWT for authentications
+This is a proper implementation of an express server coupled with mongoose and JWT for authentications.
+
+## History
+
+Its based on earlier project I was undertaking when learning more about nodeJS and express. As the project grew in size I shifted part of it here and reorganized it to what it is now a simple but highly effective, complete implementation that can be easily modified or extended to serve certain purposes.
 
 ## API Endpoints
 
