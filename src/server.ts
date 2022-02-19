@@ -3,15 +3,19 @@ require('./functions/envVerify').verifyEnvVariables();
 require('dotenv').config();
 import express from 'express';
 import 'express-async-errors';
+import swaggerUI from 'swagger-ui-express';
 //Security packages
 import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
+//Custom packages
 import apiV1Router from './api';
 import connectDB from './database/dbConnect';
 import heartBeat from './functions/heartBeat';
+import swaggerDoc from './utils/swaggerLoader';
 import notFoundMiddleWare from './middlewares/notFound';
 import errorHandlerMiddleWare from './middlewares/errorHandler';
+
 
 const app = express();
 
@@ -28,8 +32,13 @@ app.use(express.urlencoded({ extended: false }));
 
 //Heart beat / server testing route
 app.get('/isAlive', heartBeat);
+//Version 1 App APIs
+app.use('/api/v1', apiV1Router); 
+//Version 1 swagger docs
+app.use('/swagger/v1', swaggerUI.serve, swaggerUI.setup(swaggerDoc));
 
-app.use('/api/v1', apiV1Router); //Version 1 App APIs
+
+
 //Error handlers
 app.use(notFoundMiddleWare);
 app.use(errorHandlerMiddleWare);
