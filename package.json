@@ -12,7 +12,7 @@
   "scripts": {
     "start": "node ./dist/server.js",
     "dev": "nodemon ./src/server.ts",
-    "build": "tsc -p",
+    "build": "tsc",
     "populateDB": "node ./src/database/populate",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
