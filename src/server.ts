@@ -9,6 +9,7 @@ import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import apiV1Router from './api';
 import connectDB from './database/dbConnect';
+import heartBeat from './functions/heartBeat';
 import notFoundMiddleWare from './middlewares/notFound';
 import errorHandlerMiddleWare from './middlewares/errorHandler';
 
@@ -24,6 +25,9 @@ app.use(cors());
 app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+//Heart beat / server testing route
+app.get('/heart', heartBeat);
 
 app.use('/api/v1', apiV1Router); //Version 1 App APIs
 //Error handlers
