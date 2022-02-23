@@ -33,12 +33,11 @@ app.use(express.urlencoded({ extended: false }));
 //Heart beat / server testing route
 app.get('/isAlive', heartBeat);
 //Version 1 App APIs
-app.use('/api/v1', apiV1Router); 
+app.use('/api/v1', apiV1Router);
 //Version 1 swagger docs
 app.use('/swagger/v1', swaggerUI.serve, swaggerUI.setup(swaggerDoc));
 
-
-
+//
 //Error handlers
 app.use(notFoundMiddleWare);
 app.use(errorHandlerMiddleWare);

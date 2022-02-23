@@ -54,13 +54,10 @@ const getJob = async (req: express.Request, res: express.Response) => {
 };
 
 //
-const getUserJob = async (req: express.Request, res: express.Response) => {
-	const _id = req.params.id;
+const getUserJobs = async (req: express.Request, res: express.Response) => {
+	//const _id = req.params.id;
 	const createdBy = req.body.clientData.id;
-	const job = await jobModel.find({ _id, createdBy });
-	if (!job) {
-		throw new errors.NotFound('No job found with the id: ' + _id);
-	}
+	const job = await jobModel.find({ createdBy });
 	res.status(StatusCodes.OK).json(job);
 };
 const updateJob = async (req: express.Request, res: express.Response) => {
@@ -69,7 +66,7 @@ const updateJob = async (req: express.Request, res: express.Response) => {
 		body: { company, position },
 	} = req;
 	if (company == '' || position == '')
-		throw new errors.BadRequest('Company and Position cannot ve empty');
+		throw new errors.BadRequest('Company and Position cannot be empty');
 	const job = await jobModel.findByIdAndUpdate(id, req.body);
 	if (!job) {
 		throw new errors.NotFound('No job found with the id: ' + id);
@@ -89,7 +86,7 @@ export default {
 	createJob,
 	getAllJobs,
 	getJob,
-	getUserJob,
+	getUserJobs,
 	updateJob,
 	deleteJob,
 };

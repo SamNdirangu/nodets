@@ -9,7 +9,6 @@ const confirmAuth = async (
 ) => {
 	const id = req.body.clientData.id;
 	const account = await userModel.findById(id);
-	console.log(account.isLoggedIn);
 	const { isLoggedIn } = account;
 	if (isLoggedIn) {
 		next();
