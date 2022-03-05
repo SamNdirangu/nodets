@@ -1,5 +1,5 @@
 //Before starting our server ensure that the required environmental variables are present;
-require('./functions/envVerify').verifyEnvVariables();
+require('./envVerify').verifyEnvVariables();
 require('dotenv').config();
 import express from 'express';
 import 'express-async-errors';
@@ -9,6 +9,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 //Custom packages
+import { envs } from "./envVerify";
 import apiV1Router from './api';
 import connectDB from './database/dbConnect';
 import heartBeat from './functions/heartBeat';
@@ -16,9 +17,7 @@ import swaggerDoc from './utils/swaggerLoader';
 import notFoundMiddleWare from './middlewares/notFound';
 import errorHandlerMiddleWare from './middlewares/errorHandler';
 
-
 const app = express();
-
 app.use(
 	rateLimit({
 		windowMs: 15 * 60 * 1000, //15 minutes
@@ -29,23 +28,26 @@ app.use(cors());
 app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.enable('trust proxy');
 
+//API Endpoints
 //Heart beat / server testing route
-app.get('/isAlive', heartBeat);
+app.get('/api/v1/isAlive', heartBeat);
 //Version 1 App APIs
 app.use('/api/v1', apiV1Router);
 //Version 1 swagger docs
 app.use('/swagger/v1', swaggerUI.serve, swaggerUI.setup(swaggerDoc));
 
-//
+//======================================================
 //Error handlers
 app.use(notFoundMiddleWare);
 app.use(errorHandlerMiddleWare);
 
-const port = process.env.PORT || 80;
+//=======================================================
+const port = envs.PORT;
 const startApp = () => {
 	console.log('Connecting to database...');
-	connectDB(String(process.env.dbConnectionURL))
+	connectDB(envs.dbConnectionURL)
 		.then(() => {
 			console.log('Database connected to successfully');
 			console.log('Server starting up.......');
@@ -60,3 +62,5 @@ const startApp = () => {
 };
 
 startApp();
+
+export default app;

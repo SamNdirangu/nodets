@@ -1,5 +1,6 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
+import { envs } from '../envVerify';
 import errors from '../utils/errors/errors.custom';
 
 const authenticateClient = (
@@ -15,7 +16,7 @@ const authenticateClient = (
 
 	const token = authHeader.split(' ')[1];
 	try {
-		const payload = jwt.verify(token, String(process.env.JWTSecret));
+		const payload = jwt.verify(token, envs.JWTSecret);
 		if (typeof payload == 'object') req.body.clientData = { ...{ id: payload._id } };
 		next();
 	} catch (error) {

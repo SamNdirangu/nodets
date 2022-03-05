@@ -1,0 +1,14 @@
+.git*
+.vscode
+data
+dist
+node_modules
+
+.dockerignore
+.env
+.eslintrc.json
+docker-compose*
+Dockerfile
+LICENSE
+package-lock.json
+README.md

@@ -2,6 +2,8 @@ require('dotenv').config();
 import jwt from 'jsonwebtoken';
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
+
+import { envs } from '../../../envVerify';
 import authModel from '../model.user';
 import validators from '../../../functions/validators';
 import customErrors from '../../../utils/errors/errors.custom';
@@ -20,7 +22,7 @@ const sigin = async (req: Request, res: Response) => {
 	//ForJWT its besst practice to keep the payload small for better user experience
 	const token = jwt.sign(
 		{ id: account.id, username: 'Sam' },
-		String(process.env.JWTSecret),
+		envs.JWTSecret,
 		{ expiresIn: '30d' },
 	);
 	//Send our token

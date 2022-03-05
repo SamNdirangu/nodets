@@ -22,3 +22,4 @@ paths:
             application/json:
               schema:
                 type: array
+                 

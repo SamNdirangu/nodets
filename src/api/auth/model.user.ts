@@ -2,6 +2,7 @@ require('dotenv').config();
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import mongoose from 'mongoose';
+import { envs } from '../../envVerify';
 import validators from '../../functions/validators';
 
 const userSchema = new mongoose.Schema({
@@ -32,8 +33,8 @@ userSchema.methods.comparePassword = async function (candidatePassword: string) 
 };
 //Sign and return our jwt token
 userSchema.methods.createJWT = function () {
-	return jwt.sign({ _id: this._id, email: this.email }, String(process.env.JWTSecret), {
-		expiresIn: String(process.env.JWTLifetime),
+	return jwt.sign({ _id: this._id, email: this.email }, envs.JWTSecret, {
+		expiresIn: envs.JWTLifetime,
 	});
 };
 export default mongoose.model('User', userSchema);

@@ -1,0 +1,17 @@
+version: "3"
+services:
+  nginx:
+    ports:
+    - 3000:80
+  nodets:
+    build: 
+      context: .
+      args:
+        NODE_ENV: development
+    command: npm run devdocker
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./:/app:ro
+      - /app/node_modules
+# docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build

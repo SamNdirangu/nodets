@@ -60,6 +60,8 @@ const getUserJobs = async (req: express.Request, res: express.Response) => {
 	const job = await jobModel.find({ createdBy });
 	res.status(StatusCodes.OK).json(job);
 };
+
+//
 const updateJob = async (req: express.Request, res: express.Response) => {
 	const id = req.params.id;
 	const {

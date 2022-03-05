@@ -1,0 +1,15 @@
+version: "3"
+services:
+  nginx:
+    ports:
+    - 80:80
+  nodets:
+    build: 
+      context: .
+      args:
+        NODE_ENV: production
+    command: npm start
+    environment:
+      - NODE_ENV=production
+
+# docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
