@@ -4,6 +4,8 @@ services:
     ports:
     - 3000:80
   nodets:
+    expose: 
+      - 3000
     build: 
       context: .
       args:
