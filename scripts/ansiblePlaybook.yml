@@ -1,0 +1,39 @@
+---
+- hosts: nodets
+  become: yes
+  tasks:
+    - name: Updating Yum
+      yum:
+        name: yum
+        state: latest
+
+    - name: Installing yum-utils
+      yum:
+        name: yum-utils
+        state: present
+       
+    - name: Adding Docker Repo to Yum
+      yum_repository:
+        name: docker-ce.repo
+        description: Docker repo
+        baseurl: https://download.docker.com/linux/centos/docker-ce.repo
+  
+    - name: Installing docker engine packages
+      yum: 
+        name: 
+          - docker-ce 
+          - docker-ce-cli
+          - containerd.io
+        state: present
+        update_cache: yes
+
+    - name: Install Git
+      yum: 
+        name: git
+        state: present
+        update_cache: yes
+
+    - name: Grab our code
+      git: 
+        repo: "https://{{ githubuser | urlencode }}:{{ githubpassword | urlencode }}@github.com/privrepo.git"
+        dest: /home/code/

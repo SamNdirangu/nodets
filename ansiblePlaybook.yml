@@ -1,8 +1,0 @@
----
-- hosts: nodets
-  tasks:
-    - name: update yum
-      yum:
-        name: yum
-        state: latest
-      
