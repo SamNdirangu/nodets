@@ -1,4 +1,11 @@
 // Specialized Fucntions ================================================================
+/**
+ * 
+ * @param query The mongodb model query instance
+ * @param numericFilters supplied in the get params eg price<180,rating<1.2,somenumericalvalu<23
+ * @param options An array of strings of the numerical fields within the model
+ * @returns 
+ */
 const numericalFilterBuilder = (
 	query: any, //the mongoose query
 	numericFilters: string, //within request param

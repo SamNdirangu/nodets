@@ -12,6 +12,7 @@ services:
       - mongo
     environment:
       PORT: 3000
+      #During prod dont use this
       JWTSecret: 233j90jf34pn2f2p4n3ng3nnp
       JWTLifetime: 30d
       dbConnectionURL: mongodb://root:example@mongo:27017

@@ -3,11 +3,10 @@
 // Express
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
-import apiFunctions from '../../functions/apiFunctions';
 import ProductModel from './model.products';
+import apiFunctions from '../../functions/apiFunctions';
 
 const getAllProductsStatic = async (req: Request, res: Response) => {
-	const { numericFilters } = req.query;
 	const products = await ProductModel.where('price').gt(300);
 	res.status(200).json({ nbHits: products.length, products });
 };

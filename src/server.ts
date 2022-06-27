@@ -27,15 +27,14 @@ app.use(
 app.use(cors());
 app.use(helmet());
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 app.enable('trust proxy');
+app.use(express.urlencoded({ extended: false }));
 
 //API Endpoints
 //Heart beat / server testing route
-app.get('/api/v1/isAlive', heartBeat);
-//Version 1 App APIs
+app.get('/', heartBeat);
+//Version 1 App APIs and swagger docs
 app.use('/api/v1', apiV1Router);
-//Version 1 swagger docs
 app.use('/swagger/v1', swaggerUI.serve, swaggerUI.setup(swaggerDoc));
 
 //======================================================
