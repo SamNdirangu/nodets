@@ -1,5 +1,5 @@
 //Before starting our server ensure that the required environmental variables are present;
-require('./envVerify').verifyEnvVariables();
+
 require('dotenv').config();
 import express from 'express';
 import 'express-async-errors';

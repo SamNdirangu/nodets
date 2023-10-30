@@ -3,7 +3,7 @@ require('dotenv').config();
 //This will trigger an error incase the app doesnt have the required env variables to functions
 //Please review the .env.example for more guidance
 //required variables in string format
-const requiredVariables = ['JWTSecret', 'JWTLifetime','dbConnectionURL'];
+const requiredVariables = ['JWTSecret', 'JWTLifetime', 'dbConnectionURL'];
 const optionalVariables = ['PORT',];
 
 const errMessage =

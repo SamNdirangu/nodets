@@ -13,10 +13,14 @@ const userSchema = new mongoose.Schema({
 		required: true,
 		validate: [validators.validateEmail, 'Please fill a valid email address'],
 	},
-	password: String,
+	password: {
+		type: String,
+		required: true
+	},
 	isLoggedIn: {
 		type: Boolean,
 		default: true,
+		required: true,
 	},
 });
 
@@ -37,4 +41,14 @@ userSchema.methods.createJWT = function () {
 		expiresIn: envs.JWTLifetime,
 	});
 };
-export default mongoose.model('User', userSchema);
+export interface user extends mongoose.Document {
+	email: String,
+	password: String,
+	isLoggedIn: boolean,
+
+	createJWT(): string;
+	comparePassword(candidatePassword: string): Promise<boolean>;
+}
+
+
+export default mongoose.model<user>('User', userSchema);

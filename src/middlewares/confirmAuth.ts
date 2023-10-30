@@ -9,7 +9,7 @@ const confirmAuth = async (
 ) => {
 	const id = req.body.clientData.id;
 	const account = await userModel.findById(id);
-	const { isLoggedIn } = account;
+	const isLoggedIn = account == null ? false : account.isLoggedIn;
 	if (isLoggedIn) {
 		next();
 	} else throw new errors.UnAuthorized('Authentication Invalid');
